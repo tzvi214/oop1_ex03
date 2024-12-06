@@ -2,6 +2,8 @@
 #include "Pixel.h"
 #include "Image.h"
 #include "ImageDataStructure.h"
+const unsigned char BLACK = (unsigned char)219;
+const unsigned char GRAY = (unsigned char)176;
 
 using std::cout;
 using std::endl;
@@ -9,17 +11,14 @@ using std::endl;
 
 int main()
 {
-	//Pixel p1(219);
-	//Pixel p2;
-	//cout << endl << "p1 is: " << p1;
-	//cout << endl << "p2 is: " << p2;
-
-	// p1 &= p2;
-	//cout << endl << "p1 is: " << p1;
-	//cout << endl << "p2 is: " << p2;
-	Image image1;
-	Image image2(20, 10);
-	Image image3(20, 10, 219);
-	//cout << image;
+	ImageDataStructure im1(55,5, GRAY);
+	ImageDataStructure im2(5, 5, BLACK);
+	
+	cout << im2+im1;
+	//cout << "\n \n \n \n \n ";
+	cout << im1 + im2;
+	//im1 += im2;
+//	cout << im1;
+	//cout << im2;
 	return 0;
 }
