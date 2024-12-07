@@ -33,6 +33,13 @@ ImageDataStructure::~ImageDataStructure()
 	}
 }
 
+ImageDataStructure::ImageDataStructure(const ImageDataStructure& other) // copy c-tor
+	: m_height(other.m_height), m_width(other.m_width)
+{
+	m_ImageDS = buildMatrix(m_height, m_width);
+	this->copy(other);
+}
+
 bool ImageDataStructure::operator==(const ImageDataStructure& other) const
 {
 	/*if (this == &other)
@@ -78,9 +85,7 @@ ImageDataStructure ImageDataStructure::operator+(const ImageDataStructure& other
 			if (m_width > j && m_height > i)
 				newMatrix[i][j] = m_ImageDS[i][j];
 
-			else if (other.m_height > i)
-
-				//else if (i < other.m_height )
+			 else if (j >= m_width && j - m_width < other.m_width && i < other.m_height)
 				newMatrix[i][j] = other.m_ImageDS[i][j - m_width];
 			else
 				newMatrix[i][j] = Pixel();
@@ -88,32 +93,6 @@ ImageDataStructure ImageDataStructure::operator+(const ImageDataStructure& other
 	}
 	return ImageDataStructure(newRow, newCol, newMatrix);
 }
-
-//ImageDataStructure ImageDataStructure::operator+(const ImageDataStructure& other) const
-//{
-//	// גובה ורוחב של התמונה החדשה
-//	int newRow = std::max(m_height, other.m_height); // גובה מקסימלי
-//	int newCol = m_width + other.m_width;           // רוחב משולב
-//
-//	// יצירת מטריצה חדשה
-//	Pixel** newMatrix = buildMatrix(newRow, newCol);
-//
-//	// מילוי מטריצת התוצאה
-// for (int i = 0; i < newRow; i++) 
-//	 for (int j = 0; j < newCol; j++)
-//	 {
-//		 if (i < m_height && j < m_width)
-//			 // העתקת התמונה הראשונה (A)
-//			 newMatrix[i][j] = m_ImageDS[i][j];
-//		 else if (i < other.m_height && j >= m_width)
-//			 // העתקת התמונה השנייה (B) למקום החדש
-//			 newMatrix[i][j] = other.m_ImageDS[i][j - m_width];
-//		 else
-//			 // מילוי "רקע" בצבע לבן
-//			 newMatrix[i][j] = Pixel(); // הנח ש-W מייצג פיקסל לבן
-//	 }
-//	return ImageDataStructure(newRow, newCol, newMatrix);
-//}
 
 
 Pixel** ImageDataStructure::buildMatrix(int row, int col)const
@@ -144,3 +123,22 @@ std::ostream& operator<<(std::ostream& os, const ImageDataStructure& image)
 
 	return os;
 }
+void ImageDataStructure::copy(const ImageDataStructure& other)
+{
+	m_height = other.m_height;
+	m_width = other.m_width;
+
+	for (int i = 0; i < m_height; i++)
+	{
+		for (int j = 0; j < m_width; j++)
+		{
+			m_ImageDS[i][j] = other.m_ImageDS[i][j];
+		}
+	}
+}
+
+void ImageDataStructure::operator=(const ImageDataStructure& other)
+{
+	this->copy(other);
+}
+

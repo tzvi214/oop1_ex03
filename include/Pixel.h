@@ -1,6 +1,7 @@
 #pragma once
 #include <iosfwd>
 
+
 class Pixel
 {
 public:
@@ -12,6 +13,7 @@ public:
 	void operator|=(const Pixel&);
 	unsigned char operator&(const Pixel&)const;
 	void operator&=(const Pixel&);
+	void operator=(const Pixel&);
 
 private:
 	unsigned char m_color;
