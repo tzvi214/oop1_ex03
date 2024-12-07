@@ -17,6 +17,7 @@ public:
 	ImageDataStructure operator+(const ImageDataStructure& other) const;
 	friend std::ostream& operator<<(std::ostream&, const ImageDataStructure&);
 	void operator=(const ImageDataStructure&);
+	ImageDataStructure operator|(const ImageDataStructure& other)const;
 
 private:
 	

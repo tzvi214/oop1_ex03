@@ -11,14 +11,11 @@ using std::endl;
 
 int main()
 {
-	ImageDataStructure im1(3,2, GRAY);
-	ImageDataStructure im2(2, 3, BLACK);
+	Image image1(3,2, GRAY);
+	Image image2(2, 3, BLACK);
 	
-	cout << im2+im1;
+	cout << image1 + image2;
 	
-	im1 = im2;
-	/*cout << im1 + im2;*/
-	cout << "\n \n \n";
-	//cout << im2;
-	return 0;
+	
+	return EXIT_SUCCESS;
 }

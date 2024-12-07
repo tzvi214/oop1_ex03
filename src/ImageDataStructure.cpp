@@ -142,3 +142,10 @@ void ImageDataStructure::operator=(const ImageDataStructure& other)
 	this->copy(other);
 }
 
+ImageDataStructure ImageDataStructure::operator|(const ImageDataStructure& other) const
+{
+
+
+	return ImageDataStructure();
+}
+
