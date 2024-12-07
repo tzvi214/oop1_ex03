@@ -29,6 +29,11 @@ std::ostream& operator<<(std::ostream& os, const Image& image)
 	return os << image.m_Image;
 }
 
+Image operator*(unsigned int n, const Image& image)
+{
+	return image*n;
+}
+
 Image Image::operator+(const Image& other) const
 {
 	Image temp;
@@ -40,4 +45,25 @@ Image Image::operator+(const Image& other) const
 void Image::operator+=(const Image& other)
 {
 	*this = *this + other;
+}
+
+Image Image::operator*(unsigned int n) const
+{
+	if(n ==0)
+	return Image();
+	Image temp(m_Image.GetHeight(), m_Image.GetWidth() * n); // יצירת תמונה בגודל מתאים		
+	for (int i = 0; i < n; i++)
+		temp += *this;
+		
+	return temp;
+}
+
+void Image::operator*=(unsigned int n)
+{
+	if (n == 0)
+	{
+		*this = Image();
+		return;
+	}
+	*this = n * *this;
 }

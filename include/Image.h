@@ -19,7 +19,9 @@ public:
 	Image operator+(const Image& other) const;
 	void operator += (const Image & other);
 	friend std::ostream& operator<<(std::ostream&, const Image&);
-
+	Image operator*(unsigned int n)const;
+	friend Image operator*(unsigned int n, const Image& image) ;
+	void operator *=(unsigned int n);
 private:
 	ImageDataStructure m_Image;
 
