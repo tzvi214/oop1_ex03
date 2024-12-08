@@ -13,6 +13,7 @@ public:
 	ImageDataStructure(const ImageDataStructure&); // copy c-tor
 	ImageDataStructure(int, int, Pixel**& pixel);
 	~ImageDataStructure();
+
 	int GetHeight()const;
 	int GetWidth()const;
 	bool operator==(const ImageDataStructure&)const;
@@ -20,7 +21,7 @@ public:
 	void operator=(const ImageDataStructure&);
 	ImageDataStructure operator+(const ImageDataStructure& other) const;
 	friend std::ostream& operator<<(std::ostream&, const ImageDataStructure&);
-
+	ImageDataStructure operator|(const ImageDataStructure&) const;
 private:
 	Pixel** m_ImageDS = nullptr;
 	int m_width;

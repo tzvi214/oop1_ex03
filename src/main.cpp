@@ -18,5 +18,12 @@ int main()
 	
 	cout << "image2" << endl << image2 << endl;
 	
+	Image image3 = image1 | image2;
+	cout << "image3" << endl << image3 << endl;// זה עובד לי
+	image1 |= image2;
+
+	cout << "image1" << endl << image1 << endl;// זה עובד לי
+
+	cout << image1 | image2 ;// זה לא עובד לי
 	return EXIT_SUCCESS;
 }

@@ -8,6 +8,10 @@ Image::Image(int height, int width, Pixel pixel) :m_Image(height, width, pixel) 
 
 Image::Image(const Image& other) :m_Image(other.m_Image) {}
 
+Image::Image(const ImageDataStructure& imageDS)
+	:m_Image{imageDS}
+{ }
+
 bool Image::operator==(const Image& other) const
 {
 	return (m_Image == other.m_Image);
@@ -40,6 +44,7 @@ Image Image::operator+(const Image& other) const
 
 	temp.m_Image = m_Image + other.m_Image;
 	return temp;
+	//return Image(m_Image + other.m_Image);
 }
 
 void Image::operator+=(const Image& other)
@@ -66,4 +71,19 @@ void Image::operator*=(unsigned int n)
 		return;
 	}
 	*this = n * *this;
+}
+
+Image Image::operator|(const Image& other) const
+{
+	//i need to check if is nullptr
+	
+	Image temp;
+	temp.m_Image = m_Image | other.m_Image;
+	return temp;
+	// return Image(m_Image | other.m_Image);
+}
+
+void Image::operator|=(const Image& other)
+{
+	*this = *this | other;
 }

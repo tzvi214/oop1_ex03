@@ -140,6 +140,39 @@ ImageDataStructure ImageDataStructure::operator+(const ImageDataStructure& other
 	return ImageDataStructure(newRow, newCol, newMatrix);
 }
 
+ImageDataStructure ImageDataStructure::operator|(const ImageDataStructure& other) const
+{
+	// i need to check if is nullptr
+	int newRow = (m_height > other.m_height)? m_height : other.m_height;
+	int newCol = (m_width > other.m_width) ? m_width : other.m_width;
+	Pixel** newMatrix = allocImage(newRow, newCol);
+
+	for (int i = 0; i < newRow; i++)
+	{
+
+		for (int j = 0; j < newCol; j++)
+		{
+			if (i < m_height && j < m_width)// בתווך של this
+			{
+				if (i < other.m_height && j < other.m_width)// in this and in other
+				{
+					newMatrix[i][j] = m_ImageDS[i][j] | other.m_ImageDS[i][j];
+				}
+				else// only in this
+					newMatrix[i][j] = m_ImageDS[i][j];
+			}
+
+			else if (i < other.m_height && j < other.m_width)// only in other
+			{
+				newMatrix[i][j] = other.m_ImageDS[i][j];
+			}
+			else// nat in this and nat in other
+				newMatrix[i][j] = Pixel();
+		}
+	}
+	return ImageDataStructure(newRow, newCol, newMatrix);
+}
+
 std::ostream& operator<<(std::ostream& os, const ImageDataStructure& image)
 {
 	if (!image.m_ImageDS)
