@@ -77,13 +77,23 @@ Image Image::operator|(const Image& other) const
 {
 	//i need to check if is nullptr
 	
-	Image temp;
+	/*Image temp;
 	temp.m_Image = m_Image | other.m_Image;
-	return temp;
-	// return Image(m_Image | other.m_Image);
+	return temp;*/
+	 return Image(m_Image | other.m_Image);
 }
 
 void Image::operator|=(const Image& other)
 {
 	*this = *this | other;
+}
+
+Image Image::operator&(const Image& other) const
+{
+	return Image(m_Image & other.m_Image);
+}
+
+void Image::operator&=(const Image& other)
+{
+	*this = *this & other;
 }

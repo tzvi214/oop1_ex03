@@ -22,6 +22,8 @@ public:
 	ImageDataStructure operator+(const ImageDataStructure& other) const;
 	friend std::ostream& operator<<(std::ostream&, const ImageDataStructure&);
 	ImageDataStructure operator|(const ImageDataStructure&) const;
+	ImageDataStructure operator&(const ImageDataStructure&) const;
+
 private:
 	Pixel** m_ImageDS = nullptr;
 	int m_width;

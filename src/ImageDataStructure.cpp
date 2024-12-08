@@ -173,6 +173,23 @@ ImageDataStructure ImageDataStructure::operator|(const ImageDataStructure& other
 	return ImageDataStructure(newRow, newCol, newMatrix);
 }
 
+ImageDataStructure ImageDataStructure::operator&(const ImageDataStructure& other) const
+{
+	// i need to check if is nullptr
+	int newRow = (m_height < other.m_height) ? m_height : other.m_height;
+	int newCol = (m_width < other.m_width) ? m_width : other.m_width;
+	Pixel** newMatrix = allocImage(newRow, newCol);
+
+	//i dont need to check the size of both matrix
+	for(int i =0; i < newRow; i++)
+		for (int j = 0; j < newCol; j++)
+		{
+			newMatrix[i][j] = m_ImageDS[i][j] & other.m_ImageDS[i][j];
+		}
+
+	return ImageDataStructure(newRow, newCol, newMatrix);
+}
+
 std::ostream& operator<<(std::ostream& os, const ImageDataStructure& image)
 {
 	if (!image.m_ImageDS)

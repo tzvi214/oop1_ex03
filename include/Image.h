@@ -25,6 +25,8 @@ public:
 	void operator *=(unsigned int n);
 	Image operator|(const Image&) const;
 	void operator|=(const Image&);
+	Image operator&(const Image&) const;
+	void operator&=(const Image&);
 private:
 	ImageDataStructure m_Image;
 
