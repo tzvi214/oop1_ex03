@@ -9,9 +9,9 @@ public:
 	unsigned char getColor() const;
 	bool operator==(const Pixel&)const;
 	bool operator!=(const Pixel&)const;
-	unsigned char operator|(const Pixel&)const;
+	Pixel operator|(const Pixel&)const;
 	void operator|=(const Pixel&);
-	unsigned char operator&(const Pixel&)const;
+	Pixel operator&(const Pixel&)const;
 	void operator&=(const Pixel&);
 	void operator=(const Pixel&);
 

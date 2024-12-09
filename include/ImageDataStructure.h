@@ -25,8 +25,8 @@ public:
 	void operator~();
 	Pixel& operator()(unsigned int, unsigned int);
 	const Pixel& operator()(unsigned int, unsigned int) const;
-	int GetHeight()const { return m_width ; }
-	int GetWidth()const { return m_height ; }
+	int GetHeight()const { return m_height; }
+	int GetWidth()const { return m_width; }
 private:
 	Pixel** m_ImageDS = nullptr;
 	int m_width;
