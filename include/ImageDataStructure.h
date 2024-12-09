@@ -12,7 +12,7 @@ public:
 	ImageDataStructure(int height = 0, int width = 0, Pixel pixel = ' ');
 	ImageDataStructure(const ImageDataStructure&); // copy c-tor
 	ImageDataStructure(int, int, Pixel**& pixel);
-	~ImageDataStructure();
+	~ImageDataStructure();//jyj
 
 	
 	bool operator==(const ImageDataStructure&)const;
