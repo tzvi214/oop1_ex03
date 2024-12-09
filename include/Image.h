@@ -27,6 +27,11 @@ public:
 	void operator|=(const Image&);
 	Image operator&(const Image&) const;
 	void operator&=(const Image&);
+	void operator~();
+	Pixel& operator()(unsigned int, unsigned int);
+	const Pixel& operator()(unsigned int, unsigned int) const;
+	int GetHeight() const { return m_Image.GetHeight() ; }
+	int GetWidth() const { return m_Image.GetWidth() ; }
 private:
 	ImageDataStructure m_Image;
 

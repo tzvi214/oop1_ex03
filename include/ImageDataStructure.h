@@ -14,8 +14,7 @@ public:
 	ImageDataStructure(int, int, Pixel**& pixel);
 	~ImageDataStructure();
 
-	int GetHeight()const;
-	int GetWidth()const;
+	
 	bool operator==(const ImageDataStructure&)const;
 	bool operator!=(const ImageDataStructure&)const;
 	void operator=(const ImageDataStructure&);
@@ -23,7 +22,11 @@ public:
 	friend std::ostream& operator<<(std::ostream&, const ImageDataStructure&);
 	ImageDataStructure operator|(const ImageDataStructure&) const;
 	ImageDataStructure operator&(const ImageDataStructure&) const;
-
+	void operator~();
+	Pixel& operator()(unsigned int, unsigned int);
+	const Pixel& operator()(unsigned int, unsigned int) const;
+	int GetHeight()const { return m_width ; }
+	int GetWidth()const { return m_height ; }
 private:
 	Pixel** m_ImageDS = nullptr;
 	int m_width;

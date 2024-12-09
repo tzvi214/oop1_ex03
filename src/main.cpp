@@ -11,19 +11,6 @@ using std::endl;
 
 int main()
 {
-	Image image1(3,2, GRAY);
-	Image image2(2, 3, BLACK);
 	
-	cout << "image1" << endl << image1 << endl;
-	cout << "image2" << endl << image2 << endl;
-
-	cout <<"(image1 & image2)" << endl << (image1 & image2) << endl;
-	image1 &= image2;
-	cout << "(image1 &= image2)" << endl << image1 << endl;
-	/*cout << "image2 | image2" << endl ;
-	cout << (image1 | image2) << endl;
-	
-	cout << "image1  image2" << endl << image1 << endl;*/
-
 	return EXIT_SUCCESS;
 }

@@ -1,4 +1,6 @@
 #include "ImageDataStructure.h"
+const unsigned char BLACK = (unsigned char)219;
+const unsigned char WHITE = (unsigned char)32;
 
 
 ImageDataStructure::ImageDataStructure(int height, int width, Pixel pixel)
@@ -74,15 +76,6 @@ ImageDataStructure::~ImageDataStructure()
 	this->deleteImage();
 }
 
-int ImageDataStructure::GetHeight()const
-{
-	return m_height;
-}
-
-int ImageDataStructure::GetWidth()const
-{
-	return m_width;
-}
 
 bool ImageDataStructure::operator==(const ImageDataStructure& other) const
 {
@@ -190,6 +183,20 @@ ImageDataStructure ImageDataStructure::operator&(const ImageDataStructure& other
 	return ImageDataStructure(newRow, newCol, newMatrix);
 }
 
+void ImageDataStructure::operator~()
+{
+	for (int i = 0; i < m_height; i++)
+	{
+		for (int j = 0; j < m_width; j++)
+		{
+			if (m_ImageDS[i][j] == BLACK)
+				m_ImageDS[i][j] = WHITE;
+			else if (m_ImageDS[i][j] == WHITE)
+				m_ImageDS[i][j] = BLACK;
+		}
+	}
+}
+
 std::ostream& operator<<(std::ostream& os, const ImageDataStructure& image)
 {
 	if (!image.m_ImageDS)
@@ -206,3 +213,20 @@ std::ostream& operator<<(std::ostream& os, const ImageDataStructure& image)
 
 	return os;
 }
+Pixel& ImageDataStructure::operator()(unsigned int height, unsigned int width)
+{
+	if (!m_ImageDS)
+		throw std::runtime_error("Image data structure is not initialized");
+
+	if (height >= (unsigned int)m_height || width >= (unsigned int)m_width)
+		throw std::out_of_range("Pixel index out of range");
+
+	return m_ImageDS[height][width];
+}
+
+const Pixel& ImageDataStructure::operator()(unsigned int height, unsigned int width) const
+{
+	return const_cast<ImageDataStructure*>(this)->operator()(height, width);
+
+}
+

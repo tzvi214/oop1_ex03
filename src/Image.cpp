@@ -57,7 +57,7 @@ Image Image::operator*(unsigned int n) const
 	if(n ==0)
 	return Image();
 	Image temp(m_Image.GetHeight(), m_Image.GetWidth() * n); // יצירת תמונה בגודל מתאים		
-	for (int i = 0; i < n; i++)
+	for (unsigned i = 0; i < n; i++)
 		temp += *this;
 		
 	return temp;
@@ -96,4 +96,19 @@ Image Image::operator&(const Image& other) const
 void Image::operator&=(const Image& other)
 {
 	*this = *this & other;
+}
+
+void Image::operator~()
+{
+	~m_Image;
+}
+
+Pixel& Image::operator()(unsigned int height, unsigned int width)
+{
+	return m_Image(height, width);
+}
+
+const Pixel& Image::operator()(unsigned int height, unsigned int width) const
+{
+	return m_Image(height, width);
 }

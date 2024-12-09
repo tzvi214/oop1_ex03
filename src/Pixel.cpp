@@ -10,7 +10,7 @@ unsigned char Pixel::getColor() const
 
 bool Pixel::operator==(const Pixel& other) const
 {
-	return (this->m_color == other.m_color);
+	return (m_color == other.m_color);
 }
 
 bool Pixel::operator!=(const Pixel& other) const
