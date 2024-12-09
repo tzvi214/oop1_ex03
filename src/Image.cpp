@@ -22,9 +22,10 @@ bool  Image::operator!=(const Image& other)const
 	return !(*this == other);
 }
 
-void Image::operator=(const Image& other)
+Image Image::operator=(const Image& other)
 {
 	this->m_Image = other.m_Image;
+	return *this;
 }
 
 std::ostream& operator<<(std::ostream& os, const Image& image)
@@ -40,16 +41,17 @@ Image operator*(unsigned int n, const Image& image)
 
 Image Image::operator+(const Image& other) const
 {
-	Image temp;
+	/*Image temp;
 
 	temp.m_Image = m_Image + other.m_Image;
-	return temp;
-	//return Image(m_Image + other.m_Image);
+	return temp;*/
+	return Image(m_Image + other.m_Image);
 }
 
-void Image::operator+=(const Image& other)
+Image Image::operator+=(const Image& other)
 {
-	*this = *this + other;
+	
+	return (*this = *this + other);
 }
 
 Image Image::operator*(unsigned int n) const
@@ -63,29 +65,24 @@ Image Image::operator*(unsigned int n) const
 	return temp;
 }
 
-void Image::operator*=(unsigned int n)
+Image Image::operator*=(unsigned int n)
 {
 	if (n == 0)
-	{
-		*this = Image();
-		return;
-	}
-	*this = n * *this;
+		return *this = Image();
+
+	return (*this = n * *this);
 }
 
 Image Image::operator|(const Image& other) const
 {
-	//i need to check if is nullptr
-	
-	/*Image temp;
-	temp.m_Image = m_Image | other.m_Image;
-	return temp;*/
+
 	 return Image(m_Image | other.m_Image);
 }
 
-void Image::operator|=(const Image& other)
+Image Image::operator|=(const Image& other)
 {
-	*this = *this | other;
+	
+	return (*this = *this | other);
 }
 
 Image Image::operator&(const Image& other) const
@@ -93,9 +90,9 @@ Image Image::operator&(const Image& other) const
 	return Image(m_Image & other.m_Image);
 }
 
-void Image::operator&=(const Image& other)
+Image Image::operator&=(const Image& other)
 {
-	*this = *this & other;
+	return (*this = *this & other);
 }
 
 void Image::operator~()
