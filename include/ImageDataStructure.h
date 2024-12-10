@@ -16,15 +16,17 @@ public:
 
 	
 	bool operator==(const ImageDataStructure&)const;
-	bool operator!=(const ImageDataStructure&)const;
+	
 	void operator=(const ImageDataStructure&);
 	ImageDataStructure operator+(const ImageDataStructure& other) const;
+
 	friend std::ostream& operator<<(std::ostream&, const ImageDataStructure&);
 	ImageDataStructure operator|(const ImageDataStructure&) const;
 	ImageDataStructure operator&(const ImageDataStructure&) const;
 	void operator~();
 	Pixel& operator()(unsigned int, unsigned int);
 	const Pixel& operator()(unsigned int, unsigned int) const;
+
 	int GetHeight()const { return m_height; }
 	int GetWidth()const { return m_width; }
 private:

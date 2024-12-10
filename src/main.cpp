@@ -15,7 +15,7 @@ int main()
 	Image image2{ 5,2, GRAY };
 	Image image3{ 35,2, GRAY };
 
-	// cout << (image1 = image2 = image3);
+	 cout << (image1 = image2 = image3);
 	
 	return EXIT_SUCCESS;
 }

@@ -19,7 +19,7 @@ ImageDataStructure::ImageDataStructure(int height, int width, Pixel pixel)
 	}
 }
 
-ImageDataStructure::ImageDataStructure(const ImageDataStructure& other) // coyp c-tor
+ImageDataStructure::ImageDataStructure(const ImageDataStructure& other) // copy c-tor
 	: m_height(other.m_height), m_width(other.m_width)
 {
 	m_ImageDS = allocImage(m_height, m_width);
@@ -28,54 +28,14 @@ ImageDataStructure::ImageDataStructure(const ImageDataStructure& other) // coyp 
 
 ImageDataStructure::ImageDataStructure(int height, int width, Pixel**& pixel)
 	: m_height{ height }, m_width{ width }, m_ImageDS{ pixel }
-{
-}
-
-void ImageDataStructure::copy(const ImageDataStructure& other)
-{
-	m_height = other.m_height;
-	m_width = other.m_width;
-
-	for (int i = 0; i < m_height; i++)
-	{
-		for (int j = 0; j < m_width; j++)
-		{
-			m_ImageDS[i][j] = other.m_ImageDS[i][j];
-		}
-	}
-}
-
-Pixel** ImageDataStructure::allocImage(int height, int width)const
-{
-
-	Pixel** image = new Pixel * [height];
-	for (int i = 0; i < height; i++)
-	{
-		image[i] = new Pixel[width];
-	}
-
-	return image;
-}
-
-void ImageDataStructure::deleteImage()
-{
-	if (m_ImageDS)
-	{
-		for (int i = 0; i < m_height; i++)
-		{
-			delete[] m_ImageDS[i];
-		}
-		if (m_width)
-			delete[] m_ImageDS;
-		m_ImageDS = nullptr;
-	}
-}
+{ }
 
 ImageDataStructure::~ImageDataStructure()
 {
 	this->deleteImage();
 }
 
+//---------------- OPERTORS -------------------
 
 bool ImageDataStructure::operator==(const ImageDataStructure& other) const
 {
@@ -96,11 +56,6 @@ bool ImageDataStructure::operator==(const ImageDataStructure& other) const
 				return false;
 		}
 	return true;
-}
-
-bool ImageDataStructure::operator!=(const ImageDataStructure& other) const
-{
-	return !(*this == other);
 }
 
 void ImageDataStructure::operator=(const ImageDataStructure& other)
@@ -230,3 +185,45 @@ const Pixel& ImageDataStructure::operator()(unsigned int height, unsigned int wi
 
 }
 
+//-------------- HELPING FUNCTION-----------
+
+void ImageDataStructure::copy(const ImageDataStructure& other)
+{
+	m_height = other.m_height;
+	m_width = other.m_width;
+
+	for (int i = 0; i < m_height; i++)
+	{
+		for (int j = 0; j < m_width; j++)
+		{
+			m_ImageDS[i][j] = other.m_ImageDS[i][j];
+		}
+	}
+}
+
+Pixel** ImageDataStructure::allocImage(int height, int width)const
+{
+
+	Pixel** image = new Pixel * [height];
+	for (int i = 0; i < height; i++)
+	{
+		image[i] = new Pixel[width];
+	}
+
+	return image;
+}
+
+
+void ImageDataStructure::deleteImage()
+{
+	if (m_ImageDS)
+	{
+		for (int i = 0; i < m_height; i++)
+		{
+			delete[] m_ImageDS[i];
+		}
+		if (m_width)
+			delete[] m_ImageDS;
+		m_ImageDS = nullptr;
+	}
+}
